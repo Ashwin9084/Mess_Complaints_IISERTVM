@@ -24,6 +24,14 @@ An example of user side image and a form in the user front end : <br>
 An example of admin side image<br>
 ![User Side](./assets/3.png)<br>
 
+## Getting Started
+
+To get started with this project, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/Ashwin9084/Mess_Complaints_IISERTVM.git`
+2. Go to the right Directory: `cd complaints`
+4. Install the required packages: `pip install -r requirements.txt`
+5. To run the server use: `python manage.py runserver`
 
 ## Contact Us
 
