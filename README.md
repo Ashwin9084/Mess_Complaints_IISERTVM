@@ -17,9 +17,8 @@ Complaint Solver operates on a simple three-step process:
 The webapp works in two different ways depending if you are user or a admin :
 
 1. **User Side:** The user has the control over the website front end and it's functionalities. <br>
-An example of user side image <br>
+An example of user side image and a form in the user front end : <br>
 ![User Side](./assets/1.png)<br>
-An example form in the user front end <br>
 ![Forms](./assets/2.png)<br><br>
 2. **Admin Side:** The Admin side has a **Login ID** and **PWD** with which they can access the admin side of the website. The admin is accessed only by the members of the mess commity and involves going through and deleting the complaints which have been solved. The admin side can even add new CDH or Icafe if they wanted and it will be automatically updated in the website<br>
 An example of admin side image<br>
