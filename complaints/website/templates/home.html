@@ -26,15 +26,8 @@
   <link href="{% static 'website/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="{% static 'website/css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'website/css/style2.css' %}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: iPortfolio
-  * Updated: Mar 10 2023 with Bootstrap v5.2.3
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -63,11 +56,11 @@
         <ul>
           <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
           <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About Us</span></a></li>
-          <li><a href="#mess" class="nav-link scrollto"><i class="bx bx-bowl-hot"></i> <span>Mess</span></a></li>
-          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-building-house"></i> <span>Hostel</span></a></li>
-          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-book-open"></i> <span>Academic</span></a></li>
-          <li><a href="#medical" class="nav-link scrollto"><i class="bx bx-plus-medical"></i> <span>Medical</span></a></li>
-          <li><a href="#others" class="nav-link scrollto"><i class="bx bx-add-to-queue"></i> <span>Others</span></a></li>
+          <li><a href="#mess" class="nav-link scrollto"><i class="bx bx-health"></i> <span>Hygiene</span></a></li>
+          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-dollar-circle"></i> <span>Fees</span></a></li>
+          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-book-open"></i> <span>Food & Menu</span></a></li>
+          <li><a href="#medical" class="nav-link scrollto"><i class="bx bx-group"></i> <span>Staff Complaints</span></a></li>
+          <li><a href="#others" class="nav-link scrollto"><i class="bx bx-bowl-hot"></i> <span>I-cafe</span></a></li>
         </ul>
       </nav><!-- .nav-menu -->
     </div>
@@ -77,10 +70,9 @@
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="hero-container" data-aos="fade-in">
       <h1>We Help You </h1>
-      <p>With <span class="typed" data-typed-items="Mess Complaints, Hostel Affair's, Academic Problem's, Medical Complaints"></span></p>
+      <p>With <span class="typed" data-typed-items="Hygiene Issues, Fees and Reimbursement, Food and Menu Problems, Staff Complaints, I-Cafe Complaints"></span></p>
     </div>
   </section><!-- End Hero -->
-
   <main id="main">
 
     <!-- ======= About Section ======= -->
@@ -119,14 +111,15 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Mess Complaints</h2>
+          <h2>Hygiene Complaints</h2>
           <p>
-            As a section of the website dedicated to addressing your complaints related to messes, my role would be to gather all relevant information and bring it to the attention of the authorities responsible for resolving the issue as soon as possible. I would maintain clear communication with all parties involved and  ensure that the complaint has been satisfactorily resolved. While not directly involved in the resolution process, my focus would be on ensuring that your concern is addressed efficiently and effectively.
+            As a section of the website dedicated to addressing your complaints related to hygiene, my role would be to gather all relevant information and bring it to the attention of the authorities responsible for resolving the issue as soon as possible. I would maintain clear communication with all parties involved and  ensure that the complaint has been satisfactorily resolved. While not directly involved in the resolution process, my focus would be on ensuring that your concern is addressed efficiently and effectively.
           </p>
         </div>
 
         <div> 
-          <form action="{% static 'website/forms/contact.php' %}" method="post" role="form" class="php-email-form">
+          <form action="{% url 'home' %}" method="POST" class="php-email-form">
+            {% csrf_token %}
             <div class="row">
               <div class="form-group col-md-6">
                 <label for="name">Your Name: </label>
@@ -139,24 +132,19 @@
             </div>
             <div class="form-group">
               <label for="name">Enter The Mess You Have The Complaint About: </label>
-              <select id="mess" class="form-control section-lightitalic" name="CDH" >
+              <select id="mess" class="form-control section-lightitalic" name="cdh" >
                 <option value="" disabled selected hidden>Click and choose your dinning hall</option>
-                <option value="CDH_1">CDH 1</option>
-                <option value="CDH_2">CDH 2</option>
-                <option value="CDH_3">CDH 3</option>
+                {%for item in all_cdh%}
+                  <option value={{item}}>{{item}}</option>
+                {% endfor %}
                 
               </select>
             </div>
             <div class="form-group">
               <label for="name">Please Mention What Is The Complaint About: </label>
-              <textarea class="form-control" name="message" rows="10" required></textarea>
+              <textarea class="form-control" name="complaint" rows="10" required></textarea>
             </div>
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
+            <div class="text-center"><button type="submit" name = 'hygiene'>Send Message</button></div>
           </form>
         </div>
 
@@ -170,123 +158,16 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Hostel Affair's</h2>
+          <h2>Fees & Reimbursement</h2>
           <p>
-            As a section of the website dedicated to addressing your complaints related to hostel's, my role would be to gather all relevant information and bring it to the attention of the authorities responsible for resolving the issue as soon as possible. I would maintain clear communication with all parties involved and  ensure that the complaint has been satisfactorily resolved. While not directly involved in the resolution process, my focus would be on ensuring that your concern is addressed efficiently and effectively.
+            As a section of the website dedicated to addressing your complaints related to Fees & Reimbursement, my role would be to gather all relevant information and bring it to the attention of the authorities responsible for resolving the issue as soon as possible. I would maintain clear communication with all parties involved and  ensure that the complaint has been satisfactorily resolved. While not directly involved in the resolution process, my focus would be on ensuring that your concern is addressed efficiently and effectively.
           </p>
 
         </div>
 
         <div> 
-          <form action="{% static 'website/forms/contact.php' %}" method="post" role="form" class="php-email-form">
-            <div class="row">
-              <div class="form-group col-md-6">
-                <label for="name">Your Name: </label>
-                <input type="text" name="name" class="form-control" id="name" required>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="name">Your Email: </label>
-                <input type="email" class="form-control" name="email" id="email" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="name">Enter The Hostel You Have The Complaint About: </label>
-              <select id="mess" class="form-control section-lightitalic" name="CDH" >
-                <option value="" disabled selected hidden>Click and choose your hostel</option>
-                <option value="anamudi_A">Anamudi A</option>
-                <option value="anamudi_B">Anamudi B</option>
-                <option value="anamudi_C">Anamudi C</option>
-                <option value="anamudi_D">Anamudi D</option>
-                <option value="anamudi_E">Anamudi E</option>
-                <option value="agastya">Agastya</option>
-                <option value="ponmudi">Ponmudi</option>
-                <option value="eravimala">Eravimala</option>
-                <option value="sispara">Sispara</option>
-                
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="name">Please Mention What Is The Complaint About: </label>
-              <textarea class="form-control" name="message" rows="10" required></textarea>
-            </div>
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
-          </form>
-        </div>
-
-      </div>
-    </section><!-- End Hostel Section -->
-
-    <!-- ======= Academic Section ======= -->
-    <section id="services" class="contact section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Academic Grievances</h2>
-          <p>
-            As a section of the website dedicated to addressing your complaints related to academics, my role would be to gather all relevant information and bring it to the attention of the authorities responsible for resolving the issue as soon as possible. I would maintain clear communication with all parties involved and  ensure that the complaint has been satisfactorily resolved. While not directly involved in the resolution process, my focus would be on ensuring that your concern is addressed efficiently and effectively.
-          </p>
-        </div>
-
-        <div> 
-          <form action="{% static 'website/forms/contact.php' %}" method="post" role="form" class="php-email-form">
-            <div class="row">
-              <div class="form-group col-md-6">
-                <label for="name">Your Name: </label>
-                <input type="text" name="name" class="form-control" id="name" required>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="name">Your Email: </label>
-                <input type="email" class="form-control" name="email" id="email" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="name">Enter The School You Have The Complaint About: </label>
-              <select id="mess" class="form-control section-lightitalic" name="CDH" >
-                <option value="" disabled selected hidden>Click and choose your School</option>
-                <option value="ds">School Of Data Science</option>
-                <option value="bio">School Of Biology</option>
-                <option value="phy">School Of Physics</option>
-                <option value="chem">School Of Chemistry</option>
-                <option value="math">School Of Mathematics</option>
-                <option value="other">Any Other</option>
-                
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="name">Please Mention What Is The Complaint About: </label>
-              <textarea class="form-control" name="message" rows="10" required></textarea>
-            </div>
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
-          </form>
-        </div>
-       
-
-      </div>
-    </section><!-- End Academic Section -->
-
-    <!-- ======= medical Section ======= -->
-    <section id="medical" class="contact section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Medical Problem's</h2>
-          <p>
-            As a section of the website dedicated to addressing your complaints related to medical issues, my role would be to gather all relevant information and bring it to the attention of the authorities responsible for resolving the issue as soon as possible. I would maintain clear communication with all parties involved and  ensure that the complaint has been satisfactorily resolved. While not directly involved in the resolution process, my focus would be on ensuring that your concern is addressed efficiently and effectively.
-          </p>
-        </div>
-
-        <div> 
-          <form action="{% static 'website/forms/contact.php' %}" method="post" role="form" class="php-email-form">
+          <form action="{% url 'home' %}" method="POST" class="php-email-form">
+            {% csrf_token %}
             <div class="row">
               <div class="form-group col-md-6">
                 <label for="name">Your Name: </label>
@@ -300,14 +181,124 @@
             
             <div class="form-group">
               <label for="name">Please Mention What Is The Complaint About: </label>
-              <textarea class="form-control" name="message" rows="10" required></textarea>
+              <textarea class="form-control" name="complaint" rows="10" required></textarea>
+            </div>
+            
+            <div class="text-center"><button type="submit" name = 'finance'>Send Message</button></div>
+          </form>
+        </div>
+
+      </div>
+    </section><!-- End Hostel Section -->
+
+    <!-- ======= Academic Section ======= -->
+    <section id="services" class="contact section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Food & Menu</h2>
+          <p>
+            As a section of the website dedicated to addressing your complaints related to Food & Menu, my role would be to gather all relevant information and bring it to the attention of the authorities responsible for resolving the issue as soon as possible. I would maintain clear communication with all parties involved and  ensure that the complaint has been satisfactorily resolved. While not directly involved in the resolution process, my focus would be on ensuring that your concern is addressed efficiently and effectively.
+          </p>
+        </div>
+
+        <div> 
+          <form action="{% url 'home' %}" method="POST" class="php-email-form">
+            {% csrf_token %}
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="name">Your Name: </label>
+                <input type="text" name="name" class="form-control" id="name" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="name">Your Email: </label>
+                <input type="email" class="form-control" name="email" id="email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="name">Enter The Mess You Have The Complaint About: </label>
+              <select id="mess" class="form-control section-lightitalic" name="cdh" >
+                <option value="" disabled selected hidden>Click and choose your dinning hall</option>
+                {%for item in all_cdh%}
+                  <option value={{item}}>{{item}}</option>
+                {% endfor %}
+                
+              </select>
+            </div>
+
+
+            <div class="form-group">
+              <label for="name">Enter The Menu Item You Wish To Complaint About: </label>
+              <select id="mess" class="form-control section-lightitalic" name="item" >
+                <option value="" disabled selected hidden>Click and choose your food item</option>
+                {%for item in all_items%}
+                  <option value={{item}}>{{item}}</option>
+                {% endfor %}
+                
+              </select>
+              </div>
+
+            <div class="form-group">
+              <label for="name">Please Mention What Is The Complaint About: </label>
+              <textarea class="form-control" name="complaint" rows="10" required></textarea>
             </div>
             <div class="my-3">
               <div class="loading">Loading</div>
               <div class="error-message"></div>
               <div class="sent-message">Your message has been sent. Thank you!</div>
             </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
+            <div class="text-center"><button type="submit" name='menu'>Send Message</button></div>
+          </form>
+        </div>
+       
+
+      </div>
+    </section><!-- End Academic Section -->
+
+    <!-- ======= medical Section ======= -->
+    <section id="medical" class="contact section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Staff Complaints</h2>
+          <p>
+            As a section of the website dedicated to addressing your complaints related to Staff, my role would be to gather all relevant information and bring it to the attention of the authorities responsible for resolving the issue as soon as possible. I would maintain clear communication with all parties involved and  ensure that the complaint has been satisfactorily resolved. While not directly involved in the resolution process, my focus would be on ensuring that your concern is addressed efficiently and effectively.
+          </p>
+        </div>
+
+        <div> 
+          <form action="{% url 'home' %}" method="POST" class="php-email-form">
+            {% csrf_token %}
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="name">Your Name: </label>
+                <input type="text" name="name" class="form-control" id="name" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="name">Your Email: </label>
+                <input type="email" class="form-control" name="email" id="email" required>
+              </div>
+            </div>
+            <div class="form-group">
+            <label for="name">Enter The Mess You Have The Complaint About: </label>
+            <select id="mess" class="form-control section-lightitalic" name="cdh" >
+              <option value="" disabled selected hidden>Click and choose your dinning hall</option>
+              {%for item in all_cdh%}
+                  <option value={{item}}>{{item}}</option>
+                {% endfor %}
+              
+            </select>
+            </div>
+            <div class="form-group">
+              <label for="name">Please Mention What Is The Complaint About: </label>
+              <textarea class="form-control" name="complaint" rows="10" required></textarea>
+            </div>
+            <div class="my-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+            </div>
+            <div class="text-center"><button type="submit" name="staff">Send Message</button></div>
           </form>
         </div>
        
@@ -320,14 +311,15 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Any Other Complains</h2>
+          <h2>I-Cafe Complains</h2>
           <p>
-            As a section of the website dedicated to addressing your complaints related to any other topic which was not mentioned above, my role would be to gather all relevant information and bring it to the attention of the authorities responsible for resolving the issue as soon as possible. I would maintain clear communication with all parties involved and  ensure that the complaint has been satisfactorily resolved. While not directly involved in the resolution process, my focus would be on ensuring that your concern is addressed efficiently and effectively.
+            As a section of the website dedicated to addressing your complaints related to I-cafe, my role would be to gather all relevant information and bring it to the attention of the authorities responsible for resolving the issue as soon as possible. I would maintain clear communication with all parties involved and  ensure that the complaint has been satisfactorily resolved. While not directly involved in the resolution process, my focus would be on ensuring that your concern is addressed efficiently and effectively.
           </p>
          </div>
 
         <div> 
-          <form action="{% static 'website/forms/contact.php' %}" method="post" role="form" class="php-email-form">
+          <form action="{% url 'home' %}" method="POST" class="php-email-form">
+            {% csrf_token %}
             <div class="row">
               <div class="form-group col-md-6">
                 <label for="name">Your Name: </label>
@@ -339,20 +331,24 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="name">Mention The Topic Your Complaint Is About: </label>
-              <input type="text" name="name" class="form-control" id="name" required>
-              </select>
+            <label for="name">Enter The I-cafe You Have The Complaint About: </label>
+            <select id="mess" class="form-control section-lightitalic" name="icafe" >
+              <option value="" disabled selected hidden>Click and choose your icafe</option>
+              {%for item in all_icafe%}
+                  <option value={{item}}>{{item}}</option>
+                {% endfor %}
+            </select>
             </div>
             <div class="form-group">
               <label for="name">Please Mention What Is The Complaint About: </label>
-              <textarea class="form-control" name="message" rows="10" required></textarea>
+              <textarea class="form-control" name="complaint" rows="10" required></textarea>
             </div>
             <div class="my-3">
               <div class="loading">Loading</div>
               <div class="error-message"></div>
               <div class="sent-message">Your message has been sent. Thank you!</div>
             </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
+            <div class="text-center"><button type="submit" name="icafe_btn">Send Message</button></div>
           </form>
         </div>
        
@@ -366,7 +362,7 @@
 
         <div class="section-title">
           <h2>Testimonials</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Proof of our amazing work. </p>
         </div>
 
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -468,7 +464,7 @@
   <script src="{% static 'website/vendor/swiper/swiper-bundle.min.js' %}"></script>
   <script src="{% static 'website/vendor/typed.js/typed.min.js' %}"></script>
   <script src="{% static 'website/vendor/waypoints/noframework.waypoints.js' %}"></script>
-  <script src="{% static 'website/vendor/php-email-form/validate.js' %}"></script>
+  {% comment %} <script src="{% static 'website/vendor/php-email-form/validate.js' %}"></script> {% endcomment %}
 
   <!-- Template Main JS File -->
   <script src="{% static 'website/js/main.js' %}"></script>
